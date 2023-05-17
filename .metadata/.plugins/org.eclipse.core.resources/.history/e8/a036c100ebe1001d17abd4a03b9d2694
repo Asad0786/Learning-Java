@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="message" "></div>
+
+	<form align="center" action="loginPage" method="post">
+		<h1>Log in</h1>
+		<table align="center">
+			<tr>
+				<td><br>Email:</td>
+				<td><br> <input type="email" name="userEmail" /></td>
+			</tr>
+			<tr>
+				<td><br>password:</td>
+				<td><br> <input type="password" name="userPassword" /></td>
+			</tr>
+			<tr>
+				<td><br></td>
+				<td><br> <input type="submit" Value="Log in" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+<script>
+	function showMessage(message) {
+		var messageDiv = document.getElementById("message");
+		messageDiv.innerHTML = message;
+		messageDiv.style.display = "block";
+	}
+</script>
+<script>
+	var message = "${message}";
+	if (message) {
+		document.getElementById("error-message").innerHTML = errorMessage;
+	}
+</script>
+
+
+</html>

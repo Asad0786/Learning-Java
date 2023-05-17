@@ -1,0 +1,100 @@
+package practice2;
+
+public class BinaryLinkedSearch {
+
+	static SortedLinkedList head = null;
+
+	class SortedLinkedList {
+		int data;
+		SortedLinkedList link;
+	}
+
+	static SortedLinkedList links;
+
+	public static void main(String[] args) {
+		BinaryLinkedSearch bls = new BinaryLinkedSearch();
+		for(int i =1;i<=10;i++)
+			bls.insert(i);
+		bls.findElement(i);
+		SortedLinkedList links = head;
+		int l = 0, r = size();
+		while (l <= r) {
+			int mid = (l + r) / 2;
+			System.out.println(mid);
+			for (int i = l; i < mid; i++) {
+				System.out.println(links.data);
+				links = links.link;
+			}
+			if (links.data == 999) {
+				System.out.println("Element found at " + mid);
+				return;
+			} else if (links.data > 999) {
+				r = mid; // 3
+			} else if (links.data < 999) {
+				l = mid; // 5
+			}
+		}
+
+//		System.out.println(bls.get(4));
+//		System.out.println(bls.size());
+	}
+
+	@SuppressWarnings("unused")
+	private void findElement(int data) { // data - 999
+		int l = 0, r = size(); // l=0,r=9;
+		int value;
+		SortedLinkedList links = head;
+		while (l <= r) { // o<=9;5<=9
+			int mid = (l + r) / 2;// 4,
+			value = get(mid); // check here
+			if (value == data) {
+				System.out.println("Element found at " + mid);
+				return;
+			} else if (value > data) {
+				r = mid; // 3
+			} else if (value < data) {
+				l = mid + 1; // 5
+			}
+		}
+		System.out.println("Element not found");
+		return;
+	}
+
+	private int get(int mid) {
+//		for (int i = 0; i < mid; i++) { // 1<4,2->5;2<4,5->9;<4,9->11;3<4,11->15
+//			links = links.link;
+//			System.out.println(links.data);
+//		}
+		return links.data;
+	}
+
+	private static int size() {
+		int r = 0;
+		SortedLinkedList s = head;
+		while (s != null) {
+			s = s.link;
+			r++;
+		}
+		return r;
+	}
+
+	private void insert(int data) {
+
+		if (head == null) {
+			head = new SortedLinkedList();
+			head.data = data;
+			head.link = null;
+		} else {
+			SortedLinkedList temp = head;
+			while (temp.link != null)
+				temp = temp.link;
+			SortedLinkedList n = new SortedLinkedList();
+			n.data = data;
+			temp.link = n;
+			n.link = null;
+			n = temp = null;
+		}
+		return;
+	}
+
+}

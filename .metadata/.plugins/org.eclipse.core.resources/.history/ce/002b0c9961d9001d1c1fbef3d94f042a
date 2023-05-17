@@ -1,0 +1,58 @@
+package practice1;
+
+import java.util.Scanner;
+
+class Node {
+	int data;
+	Node link;
+}
+public class LinkedList {
+	public static void main(String[] args) {
+		Node head = null;
+		Scanner scan = new Scanner(System.in);
+		int choice, data;
+		do {
+			System.out.println("Press 1 to insert");
+			System.out.println("Press 2 to delete");
+			System.out.println("Press 3 to traverse through list");
+			System.out.println("press 0 to exit");
+			System.out.print("Enter your Choice:");
+			choice = scan.nextInt();
+			switch (choice) {
+			case 1:
+				System.out.println("1 to insert at begining\n 2 to insert at end");
+				int subChoice = scan.nextInt();
+				if(subChoice == 1) {
+					System.out.println("enter the element:");
+					data = scan.nextInt();
+					head = insertBegining(data, head);
+				}
+			}
+		} while (true);
+
+	}
+
+	private static Node insertBegining(int data,Node head) {
+		if(head==null) {
+			head = new Node();
+			head.data = data;
+			head.link = null;
+		}
+		else {
+			Node n = new Node();
+			n.data= data;
+			n.link = head;
+			head = n;
+		}
+		Node temp= head;
+		System.out.println("travesing:");
+		while(temp != null ) {
+			System.out.println(temp.data);
+			temp=temp.link;
+			
+		}
+		return head;
+		
+	}
+
+}

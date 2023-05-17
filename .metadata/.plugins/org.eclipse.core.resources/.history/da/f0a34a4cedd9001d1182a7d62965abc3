@@ -1,0 +1,61 @@
+package practice2;
+
+public class BinaryLinkedSearch {
+
+	private SortedLinkedList head = null;
+
+	class SortedLinkedList {
+		int data;
+		SortedLinkedList link;
+	}
+
+	public static void main(String[] args) {
+		BinaryLinkedSearch bls = new BinaryLinkedSearch();
+		bls.insert(2);
+		bls.insert(5);
+		bls.insert(9);
+		bls.insert(11);
+		bls.insert(15);
+		bls.insert(19);
+		bls.insert(21);
+		bls.findElement(5, bls);
+
+	}
+
+	private void findElement(int data, BinaryLinkedSearch bls) {
+		int l = 0, r = size() - 1;
+		int mid = l + r / 2;
+
+	}
+
+	private int size() {
+		int r = 0;
+		SortedLinkedList s = head;
+		while (s != null) {
+			s = s.link;
+			r++;
+		}
+		return r;
+	}
+
+	private void insert(int data) {
+
+		if (head == null) {
+			head = new SortedLinkedList();
+			head.data = data;
+			head.link = null;
+		} else {
+			SortedLinkedList temp = head;
+			while (temp.link != null)
+				temp = temp.link;
+			SortedLinkedList n = new SortedLinkedList();
+			n.data = data;
+			temp.link = n;
+			n.link = null;
+			n = temp = null;
+		}
+		System.out.println("Element inserted");
+		return;
+	}
+
+}

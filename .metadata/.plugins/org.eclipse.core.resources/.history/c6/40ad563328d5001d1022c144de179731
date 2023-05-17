@@ -1,0 +1,5 @@
+public class e {
+//	2 ways for threads, run and start define in run and execute through start is one way
+//  second way to access is through runnable interface i.e just override but in order to execute it first  create
+//  and then create a thread's object and pass object of class to thread. 
+}

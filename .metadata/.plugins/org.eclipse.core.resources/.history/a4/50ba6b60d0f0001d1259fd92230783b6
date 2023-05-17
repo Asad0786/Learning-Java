@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.ResultSet"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="addAppointment" method="post">
+
+		<table>
+			<tr>
+				<td>Patient Email:</td>
+				<td><select>
+						<%
+						try (ResultSet rs = (ResultSet) request.getAttribute("rs")) {
+							while (rs.next()) {
+						%>
+						<option><%=rs.getString(1)%></option>
+						<%
+						}
+						} catch (Exception e) {
+						out.println("Error occurred while retrieving patient emails");
+						e.printStackTrace();
+						}
+						%>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Doctor Email:</td>
+				<td><select>
+						<%
+						try (ResultSet ds = (ResultSet) request.getAttribute("ds")) {
+							while (ds.next()) {
+						%>
+						<option><%=ds.getString(1)%></option>
+						<%
+						}
+						} catch (Exception e) {
+						out.println("Error occurred while retrieving doctor emails");
+						e.printStackTrace();
+						}
+						%>
+				</select></td>
+			</tr>
+		</table>
+
+
+	</form>
+</body>
+</html>

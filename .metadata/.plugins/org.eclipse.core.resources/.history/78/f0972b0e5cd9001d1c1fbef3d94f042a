@@ -1,0 +1,21 @@
+package practice1;
+
+import java.util.ArrayList;
+
+public class StackImp {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int top = -1;
+		ArrayList<Integer> a = new ArrayList<>();
+		do {
+			System.out.println("Press 1 to view the stack");
+			System.out.println("Press 2 to delete an element");
+			System.out.println("Press 3 to view the whole stack");
+			System.out.println("Press 4 to see the toppest element in the stack");
+			System.out.print("Enter your Choice:");
+			
+		} while (true);
+
+	}
+
+}

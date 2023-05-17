@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="com.hms.model.LoginUserData"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title><%=request.getAttribute("role")%> Page</title>
+</head>
+<body>
+	<br>
+	<br>
+	<br>
+	<p align="Center">
+		Hey
+		<%=request.getAttribute("role")%>
+	</p>
+	
+	<%
+	if (session != null) {
+		if (session.getAttribute("userData") != null) {
+			LoginUserData Data = (LoginUserData)session.getAttribute("userData");
+			String name = Data.getName();
+			out.print(name);
+		}
+		else
+		{
+			out.println("erro 1");
+		}
+		
+	}
+	else
+	{
+		out.println("erro 2");
+	}
+	%>
+</body>
+</html>

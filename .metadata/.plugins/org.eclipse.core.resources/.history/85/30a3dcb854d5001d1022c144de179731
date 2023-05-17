@@ -1,0 +1,40 @@
+ import java.util.Scanner;
+public class t2 {
+	// Create a final class
+	// Set the value using constructors
+	// Properties as final
+	// no setter for these properties
+	//
+	private final String name;
+	private final int age;
+
+	public t2(int age, String name) {
+		this.age = age;
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		System.out.print("Enter age:");
+		int age = s.nextInt();
+		s.nextLine();
+		System.out.print("Enter name:");
+		String name = s.nextLine();
+		t2 t = new t2(age, name);
+		name = t.getName();
+		age = t.getAge();	
+		System.out.println(name);
+		System.out.println(age);
+		
+	}
+
+}
+//int, long, float, double, boolean, char array

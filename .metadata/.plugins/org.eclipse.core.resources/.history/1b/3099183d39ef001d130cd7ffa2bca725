@@ -1,0 +1,14 @@
+package com.hms.model;
+
+import java.sql.ResultSet;
+
+public interface LoginServicesModel {
+
+	public boolean authenticateUser(String email, String password);
+	public boolean changePassword(String email, String newPassword);
+	public boolean resetPassword(String email);
+	public ResultSet getUserDetails(String email);
+	public boolean logout(String email);
+	public String getRole(); 
+	
+}

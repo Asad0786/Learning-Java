@@ -1,0 +1,4 @@
+127.0.0.1 - - [05/May/2023:15:14:43 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [05/May/2023:15:14:44 +0530] "GET /web_app_interservlet/interServlet.html HTTP/1.1" 200 354
+0:0:0:0:0:0:0:1 - - [05/May/2023:15:14:44 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [05/May/2023:15:14:47 +0530] "POST /web_app_interservlet/interConn HTTP/1.1" 404 782

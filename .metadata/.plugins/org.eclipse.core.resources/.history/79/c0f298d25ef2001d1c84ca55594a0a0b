@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="com.hms.model.PatientData"%>
+<%@ page import="java.sql.ResultSet" %>
+<%
+if (session != null) {
+	if (session.getAttribute("userData") != null) {
+		PatientData Data = (PatientData) session.getAttribute("userdata");
+		if(Data.next()){
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>
+	Patient Page
+</title>
+</head>
+<body>
+	<br>
+	<br>
+	<br>
+	<p align="Center">
+		Hey
+		<%
+	
+			out.print(Data.getPassword());
+	}
+}
+else
+{
+	out.print("Error");
+}
+}
+	%>
+	</p>
+	<a href="logOut"><input type="button" value="Logout"></a>
+
+</body>
+</html>

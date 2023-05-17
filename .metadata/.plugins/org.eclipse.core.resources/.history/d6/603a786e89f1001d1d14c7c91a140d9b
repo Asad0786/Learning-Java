@@ -1,0 +1,35 @@
+package com.hms.model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class PatientImpl implements PatientDAO {
+	private DBConnection dbVar;
+	private Connection con;
+
+	public PatientImpl() {
+		dbVar = new DBConnection();
+		con = dbVar.getConnection();
+	}
+
+	@Override
+	public int inserRecord(PatientData patientData) {
+		try {
+			String query = "insert into patient (first_name,middle_name,last_name,dob,gender,email,password) values(?,?,?,?,?,?,?);";
+			PreparedStatement stmn = con.prepareStatement(query);
+			stmn.setString(1, patientData.getFname());
+			stmn.setString(2, patientData.getMname());
+			stmn.setString(3, patientData.getLname());
+			stmn.setString(4, patientData.getDob());
+			stmn.setChar(3, patientData.getGender());
+			stmn.setString(4, patientData.getEmail());
+			stmn.setString(3, patientData.getPassword());
+			
+
+		} catch (Exception e) {
+
+		}
+		return 0;
+	}
+
+}

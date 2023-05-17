@@ -1,0 +1,37 @@
+package practice2;
+
+
+class SortedLinkedList{
+	int data;
+	SortedLinkedList link;
+	private static SortedLinkedList insert(int data, SortedLinkedList head) {
+
+		if (head == null) {
+			head = new SortedLinkedList();
+			head.data = data;
+			head.link = null;
+		} else {
+			SortedLinkedList temp = head;
+			while (temp.link != null)
+				temp = temp.link;
+			SortedLinkedList n = new SortedLinkedList();
+			n.data = data;
+			temp.link = n;
+			n.link = null;
+			n = temp = null;
+		}
+		System.out.println("Element inserted");
+		return head;
+	}
+}
+public class BinaryLinkedSearch {
+
+	
+	public static void main(String[] args) {
+		SortedLinkedList head = null;
+		BinaryLinkedSearch bls = new BinaryLinkedSearch();
+		
+	}
+	
+
+}

@@ -1,0 +1,10 @@
+package list_collection;
+
+public class ArrayLists {
+	public static void main(String[] args) {
+		ArrayLists al = new ArrayLists();
+		al.add(100);
+		al.add(200);
+	}
+
+}

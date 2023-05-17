@@ -1,0 +1,21 @@
+package com.hms.model;
+
+import java.sql.Connection;
+
+public class PatientImpl implements PatientDAO {
+	private DBConnection dbVar;
+	private Connection con;
+
+	public PatientImpl() {
+		dbVar = new DBConnection();
+		con = dbVar.getConnection();
+	}
+
+
+	@Override
+	public int inserRecord(PatientData patientData) {
+		
+		return 0;
+	}
+
+}

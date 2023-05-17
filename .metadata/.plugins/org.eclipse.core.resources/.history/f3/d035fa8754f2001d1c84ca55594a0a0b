@@ -1,0 +1,71 @@
+package com.hms.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.hms.model.PatientDAO;
+import com.hms.model.PatientData;
+import com.hms.model.PatientImpl;
+
+/**
+ * Servlet implementation class createPatient
+ */
+@WebServlet("/createPatient")
+public class createPatient extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public createPatient() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/patient_view/create.jsp");
+		rd.forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String name = (request.getParameter("patientFirstName")+" "+request.getParameter("patientSecondName")+" "+request.getParameter("patientLastName")).trim().replace("\\s", "");
+		String dob = request.getParameter("patientDOB");
+		String gender = request.getParameter("patientGender");
+		String email = request.getParameter("patientEmail");
+		// System.out.println(gender);
+		PatientData pd = new PatientData();
+		pd.setName(name);
+		pd.setDob(dob);
+		pd.setEmail(email);
+		pd.setPassword(email);
+		pd.setGender(gender);
+		PatientDAO pdao = new PatientImpl();
+		int inserRecord = pdao.inserRecord(pd);
+		if(inserRecord>0) {
+			RequestDispatcher rd = request.getRequestDispatcher("addAppointment");
+			rd.forward(request,response);
+		}
+			
+
+	}
+
+}

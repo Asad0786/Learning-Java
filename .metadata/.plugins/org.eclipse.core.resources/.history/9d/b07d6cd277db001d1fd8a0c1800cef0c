@@ -1,0 +1,10 @@
+package practice2;
+
+class Node {
+	int data;
+	Node link;
+}
+
+public class SortingLL {
+	
+}

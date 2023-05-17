@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registartion</title>
+</head>
+
+<body align=center>
+	<h1>Registration</h1>
+	<form action="" method="post">
+
+		<table align=center>
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" placeholder="Enter full name" name="userName"></td>
+			</tr>
+			<tr>
+				<td><br>City:</td>
+				<td><br>
+				<input type="text" placeholder="chennai" name="userCity"></td>
+			</tr>
+
+			<tr>
+				<td><br>Email:</td>
+				<td><br>
+				<input type="email" placeholder="abc@mail.com" name="userEmail"></td>
+			</tr>
+
+			<tr>
+				<td><br>Password:</td>
+				<td><br>
+				<input type="password" placeholder="******" name="password"></td>
+			</tr>
+
+			<tr>
+				<td><br>Phone:</td>
+				<td><br>
+				<input type="number" placeholder="enter name" name = "mobileNumber"></td>
+			</tr>
+
+			<tr>
+				<td><br>&nbsp</td>
+				<td><br>
+				<input type="Submit" Value="save"></td>
+			</tr>
+
+		</table>
+
+
+	</form>
+
+</body>
+</html>

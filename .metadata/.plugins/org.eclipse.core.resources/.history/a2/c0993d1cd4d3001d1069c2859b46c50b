@@ -1,0 +1,14 @@
+
+public class B extends A{
+	
+	static int x=1;
+
+	public static void test() {
+		System.out.println("okay");
+	}
+	public static void main(String[] args) {
+		B a1 = null;
+		System.out.print(a1.x);
+		a1.test();
+	}
+}

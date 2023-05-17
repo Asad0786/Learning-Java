@@ -1,0 +1,33 @@
+package practice2;
+
+class Node {
+	int data;
+	Node link;
+}
+
+public class SortingLL {
+	static Node head = null;
+	SortingLL s = new SortingLL();
+	s.insertEnd();
+		
+	}
+	private static Node insertEnd(int data) {
+
+		if (head == null) {
+			head = new Node();
+			head.data = data;
+			head.link = null;
+		} else {
+			Node temp = head;
+			while (temp.link != null)
+				temp = temp.link;
+			Node n = new Node();
+			n.data = data;
+			temp.link = n;
+			n.link = null;
+			n = temp = null;
+		}
+		System.out.println("Element inserted");
+		return head;
+	}
+}

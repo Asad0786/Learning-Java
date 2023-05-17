@@ -1,0 +1,11 @@
+package p1;
+
+public class A {
+
+	
+	public void setX(int x) {
+		System.out.println(x);
+	}
+
+	
+}

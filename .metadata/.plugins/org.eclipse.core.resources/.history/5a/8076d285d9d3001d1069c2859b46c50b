@@ -1,0 +1,29 @@
+import java.util.Iterator;
+
+public class B extends A {
+//	
+//	static int x=1;
+//
+//	public static void test() {
+//		System.out.println("okay");
+//	}
+	public static void main(String[] args) {
+		String s = "[][]][][]][]][]";
+		int count = 0, dec =0;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			if(s.charAt(i)=='[') {
+				count++;
+			}
+			else if(s.charAt(i)==']') {
+				dec++;
+			}
+		}
+		if(count == dec) {
+			System.out.println("pass");
+		}
+		else {
+			System.out.println("failed");
+		}	
+	}
+	
+}

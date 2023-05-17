@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class pattern {
+
+//----*
+//---**
+//--***
+//-****		
+
+	public static void triangle1(int rows) {
+
+		// outer loop for number of rows
+		for (int i = 1; i <= rows; i++) {
+
+			// for spaces (first triangle)
+			for (int j = rows; j > i; j--) {
+				System.out.print(" ");
+			}
+
+			// for the patterns i.e * ( second triangle)
+			for (int k = 1; k <= i; k++) {
+				System.out.print(" 1");
+			}
+			System.out.println("");
+
+		}
+	}
+	
+//
+//
+//
+//
+//
+	
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int rows = sc.nextInt();
+		pattern.triangle1(rows);
+
+	}
+}

@@ -1,0 +1,57 @@
+package practice2;
+
+import java.util.Scanner;
+
+public class Annagram {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter first string");
+		String s1 = scan.next();
+		System.out.println("Enter second string");
+		String s2 = scan.next();
+		scan.close();
+		if (s1.length() != s2.length()) {
+			System.out.println("Not annagrams");
+		} else {
+			char[] s1A = new char[s1.length()];
+			char[] s2A = new char[s2.length()];
+			int i = 0;
+			while (i < s1.length()) {
+				s1A[i] = s1.charAt(i);
+				i++;
+			}
+			i = 0;
+			while (i < s2.length()) {
+				s2A[i] = s2.charAt(i);
+				i++;
+			}
+			s1A = sortChar(s1A);
+			s2A = sortChar(s2A);
+			if(s1A ==s2A) {
+				System.out.println("eq");
+			}
+			else {
+				System.out.println("not eq");
+			}
+		}
+	}
+
+	public static char[] sortChar(char[] ar) {
+		char temp;
+		for (int i = 0; i < ar.length - 1; i++) {
+			for (int j = 0; j < ar.length - 1; j++) {
+				if (ar[j] > ar[j + 1]) {
+					temp = ar[j];
+					ar[j] = ar[j + 1];
+					ar[j + 1] = temp;
+
+				}
+			}
+		}
+		for(char x: ar) {
+			System.out.println(x);
+		}
+		return ar;
+	}
+
+}

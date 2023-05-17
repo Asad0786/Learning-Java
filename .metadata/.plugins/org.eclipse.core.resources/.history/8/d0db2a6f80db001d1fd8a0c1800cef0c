@@ -1,0 +1,29 @@
+package practice2;
+
+public class MergeSort {
+	public static void main(String[] args) {
+		int arr[] = { 21, 3, 41, 9, 8, 7 };
+
+	}
+
+	public void mergeSort(int[] array, int l, int r) {
+		while (l < r) {
+			int mid = (l + r) / 2;
+			mergeSort(array, l, mid);
+			mergeSort(array, mid + 1, r);
+			merge(array, l, r, mid);
+		}
+
+	}
+
+	private void merge(int arr[], int l, int r, int mid) {
+		int n1 = mid - l + 1;
+		int n2 = r - mid;
+		int left[]= new int[n1];
+		int right[] = new int[n2];
+		for (int i =0 ;i<n1;i++)
+			left[i]= arr[l+i];
+		
+
+	}
+}

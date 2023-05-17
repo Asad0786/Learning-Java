@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+</head>
+<body>
+	<form action="createPatient" method="post">
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="patientFirstName"></td>
+			</tr>
+			<tr>
+				<td>Second Name:</td>
+				<td><input type="text" name="patientSecondName"></td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" name="patientLastName"></td>
+			</tr>
+			<tr>
+				<td>DOB:</td>
+				<td><input type="date" name="patientDOB"></td>
+			</tr>
+			<tr>
+				<td>Gender:</td>
+				<td><br>
+				<input type="radio" name="patientGender">Male</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+				<input type="radio" name="patientGender">Female</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+				<input type="radio" name="patientGender">Others</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="email" name="patientEmail"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Password will be sent to the patient at ther respective email</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td><br><br>
+				<td><input type="submit" value="register!"></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

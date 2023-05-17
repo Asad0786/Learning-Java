@@ -1,0 +1,15 @@
+127.0.0.1 - - [20/Apr/2023:23:26:10 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:26:12 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 738
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:26:12 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:26:32 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 762
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:27:06 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 842
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:27:16 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:27:24 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 856
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:27:37 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 871
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:27:46 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 872
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:27:52 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 886
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:28:00 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 890
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:28:15 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 890
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:28:25 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 883
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:28:39 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 887
+0:0:0:0:0:0:0:1 - - [20/Apr/2023:23:29:13 +0530] "GET /reg_web_app/first_reg.html HTTP/1.1" 200 919

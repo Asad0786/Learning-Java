@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+</head>
+<body>
+	<form action="createPatient" method="post">
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="patientFirstName"></td>
+			</tr>
+			<tr>
+				<td>Second Name:</td>
+				<td><input type="text" name="patientSecondName"></td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" name="patientLastName"></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

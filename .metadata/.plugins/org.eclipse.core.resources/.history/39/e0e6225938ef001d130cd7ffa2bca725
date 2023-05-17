@@ -1,0 +1,43 @@
+package com.hms.model;
+
+import java.sql.ResultSet;
+
+public class DoctorImpl implements LoginServicesModel {
+
+	@Override
+	public boolean authenticateUser(String email, String password) {
+		System.out.println("Doc");
+		return false;
+	}
+
+	@Override
+	public boolean changePassword(String email, String newPassword) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean resetPassword(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ResultSet getUserDetails(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean registerUser(String user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean logout(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

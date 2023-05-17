@@ -1,0 +1,17 @@
+package com.hms.model;
+
+public class DBConnection {
+	
+	private String url= "";
+	private String user="root";
+	private String password = "test";
+
+	public DBConnection() {
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+	}
+
+}

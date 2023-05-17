@@ -1,0 +1,12 @@
+package practice2;
+
+import practice2.LinkedListSorting.Node;
+
+class Node {
+	int data;
+	Node link;
+}
+static Node head;
+public class SortingLL {
+	
+}

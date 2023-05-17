@@ -1,0 +1,75 @@
+package practice2;
+
+import java.util.Scanner;
+
+public class Annagram {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter first string");
+		String s1 = scan.next();
+		System.out.println("Enter second string");
+		String s2 = scan.next();
+		scan.close();
+		boolean isAnnagram = checkAnnagram(s1, s2);
+		if (isAnnagram)
+			System.out.println(s1 + " and " + s2 + " are annagram strings");
+		else
+			System.out.println(s1 + " and " + s2 + " are not annagram strings");
+	}
+
+	// converting string to character array without methods and checking whether
+	// they are annagram or not
+	private static boolean checkAnnagram(String s1, String s2) {
+		boolean flag = false;
+		
+		if (s1.length() != s2.length())
+			System.out.println("Not annagrams");
+		
+		else {
+			char[] s1A = new char[s1.length()];
+			char[] s2A = new char[s2.length()];
+			int i = 0;
+		
+			while (i < s1.length()) {
+				s1A[i] = s1.charAt(i);
+				i++;
+				}
+			
+			i = 0;
+			
+			while (i < s2.length()) {
+				s2A[i] = s2.charAt(i);
+				i++;
+				}
+			
+			s1A = sortChar(s1A);
+			s2A = sortChar(s2A);
+			
+			for (i = 0; i < s1A.length; i++) {
+				if (s1A[i] != s2A[i])
+					break;
+				else
+					flag = true;
+				}
+		
+			}
+		return flag;
+	}
+
+	// sort the array fist in order to compare
+	private static char[] sortChar(char[] ar) {
+		char temp;
+		for (int i = 0; i < ar.length - 1; i++) {
+			for (int j = 0; j < ar.length - 1; j++) {
+				if (ar[j] > ar[j + 1]) {
+					temp = ar[j];
+					ar[j] = ar[j + 1];
+					ar[j + 1] = temp;
+
+				}
+			}
+		}
+		return ar;
+	}
+
+}

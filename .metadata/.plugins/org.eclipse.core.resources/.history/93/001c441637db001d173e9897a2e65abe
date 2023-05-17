@@ -1,0 +1,38 @@
+package practice2;
+
+public class LinkedListSorting {
+	class Node {
+		int data;
+		Node link;
+
+	}
+
+	static Node head;
+
+	public static void main(String[] args) {
+		for(int i=0;i<100;i++) {
+			insertEnd(i);
+			
+		}
+
+	}
+
+	public static void insertEnd(int data) {
+
+		if (head == null) {
+			head = new Node();
+			head.data = data;
+			head.link = null;
+		} else {
+			Node temp = head;
+			while (temp.link != null)
+				temp = temp.link;
+			Node n = new Node();
+			n.data = data;
+			temp.link = n;
+			n.link = null;
+			n = temp = null;
+		}
+		System.out.println("Element inserted");
+	}
+}

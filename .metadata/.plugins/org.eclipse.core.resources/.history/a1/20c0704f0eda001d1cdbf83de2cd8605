@@ -1,0 +1,83 @@
+package practice2;
+
+public class BinaryLinkedSearch {
+
+	private SortedLinkedList head = null;
+
+	class SortedLinkedList {
+		int data;
+		SortedLinkedList link;
+	}
+
+	public static void main(String[] args) {
+		BinaryLinkedSearch bls = new BinaryLinkedSearch();
+		bls.insert(2);
+		bls.insert(5);
+		bls.insert(9);
+		bls.insert(11);
+		bls.insert(15);
+		bls.insert(19);
+		bls.insert(21);
+		bls.insert(990);
+		bls.insert(999);
+		bls.findElement(9);
+	}
+
+	private void findElement(int data) { //5
+		int l = 0, r = size()-1;// l=0,r=9;
+		int value;
+		while (l <= r) { //o<9,
+			int mid = ((l + r) / 2)+1;
+			value = get(mid);
+			if (value == data) {
+				System.out.println("Element found at " + mid);
+				return ;
+			} else if (value > data) {
+				r = mid; //3
+			} else if (value < data) {
+				l = mid;
+			}
+		}
+		System.out.println("Element not found");
+		return ;
+	}
+
+	private int get(int mid) {
+		SortedLinkedList links = head;
+		for (int i = 0; i < mid; i++) { // 4,
+			links = links.link;
+			System.out.println(links.data);
+		}
+		return links.data;
+	}
+
+	private int size() {
+		int r = 0;
+		SortedLinkedList s = head;
+		while (s != null) {
+			s = s.link;
+			r++;
+		}
+		return r;
+	}
+
+	private void insert(int data) {
+
+		if (head == null) {
+			head = new SortedLinkedList();
+			head.data = data;
+			head.link = null;
+		} else {
+			SortedLinkedList temp = head;
+			while (temp.link != null)
+				temp = temp.link;
+			SortedLinkedList n = new SortedLinkedList();
+			n.data = data;
+			temp.link = n;
+			n.link = null;
+			n = temp = null;
+		}
+		return;
+	}
+
+}

@@ -1,0 +1,87 @@
+package practice2;
+
+import java.util.Scanner;
+
+class Node {
+	int data;
+	Node link;
+}
+
+public class SortingLL {
+	static Node head = null;
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		head = null;
+		System.out.print("Enter number of elements");
+		int n = scan.nextInt();
+		for(int i = 1;i<= n;i++) {
+			System.out.print("Enter value of"+ i + "st/nd/rd/th element:");
+			insertEnd(scan.nextInt());
+		}
+		scan.close()
+		sortList();
+		traverseList();
+
+	}
+
+	private static void sortList() {
+		// System.out.println(head); //practice2.Node@15db9742
+		for (int j = 0; j < 4; j++) {
+			Node current = head;
+			Node next = current;
+			for (int i = 0; i < 4; i++) {
+				if (current.link != null) {
+					next = next.link;
+					if (current.data > next.data)
+						swap(current, next);
+					current = current.link;
+					System.out.println("helllo");
+				}
+
+			}
+
+		}
+
+	}
+
+	private static void swap(Node cData, Node nData) {
+		cData.data = cData.data + nData.data;
+		nData.data = cData.data - nData.data;
+		cData.data = cData.data - nData.data;
+		System.out.println(cData.data + "   " + nData.data);
+	}
+
+	private static void insertEnd(int data) {
+
+		if (head == null) {
+			head = new Node();
+			head.data = data;
+			head.link = null;
+		} else {
+			Node temp = head;
+			while (temp.link != null)
+				temp = temp.link;
+			Node n = new Node();
+			n.data = data;
+			temp.link = n;
+			n.link = null;
+			n = temp = null;
+		}
+		System.out.println("Element inserted");
+	}
+
+	private static void traverseList() {
+		Node temp = new Node();
+		temp = head;
+		System.out.println("travesing:");
+		while (temp != null) {
+			System.out.println(temp.data);
+			temp = temp.link;
+
+		}
+		temp = null;
+
+	}
+
+}

@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<%
+if (session == null) {
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+	dispatcher.forward(request, response);
+}
+else{
+	out.print((String)session);
+}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title><%=request.getAttribute("role")%> Page</title>
+</head>
+<body>
+	<br>
+	<br>
+	<br>
+	<p align="Center">
+		Hey
+		<%=request.getAttribute("role")%>
+	</p>
+	<a href="logOut"><input type="button" value="Logout"></a>
+</body>
+</html>

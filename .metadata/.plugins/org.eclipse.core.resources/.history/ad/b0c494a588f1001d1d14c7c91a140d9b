@@ -1,0 +1,11 @@
+package com.hms.model;
+
+public class PatientImpl implements PatientDAO {
+
+	@Override
+	public int inserRecord(PatientData patientData) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,51 @@
+package com.hms.model;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+
+public class PatientImpl implements LoginServicesModel {
+
+	private Connection con = null;
+	private DBConnection dbCon;
+	PatientImpl(){
+		con = dbCon.getConnection();
+	}
+	
+	@Override
+	public boolean authenticateUser(String email, String password) {
+		
+		
+		return false;
+	}
+
+	@Override
+	public boolean changePassword(String email, String newPassword) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean resetPassword(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ResultSet getUserDetails(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean registerUser(String user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean logout(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}
