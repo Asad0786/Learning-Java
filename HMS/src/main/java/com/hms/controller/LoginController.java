@@ -24,31 +24,21 @@ public class LoginController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		if (session != null) {
-			if (session.getAttribute("userData") != null) {
-				RequestDispatcher rd = request.getRequestDispatcher((String) session.getAttribute("currentPage"));
-				String s = (String) session.getAttribute("currentPage");
-				System.out.println(s);
-				rd.forward(request, response);
-			} else {
-				System.out.println("Error 1");
-			}
-		} else {
-			System.out.println("Error 2");
-		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	try {
 		String email = request.getParameter("userEmail");
 		String passw = request.getParameter("userPassw");
 		String role = request.getParameter("role");
 		LoginServicesModel li = new LoginImpl();
 		int loginStatus = li.authenticateUser(email, passw, role);
-		HttpSession session = request.getSession();
 
 		if (loginStatus != 0) {
+			HttpSession session = request.getSession();
+			session.setMaxInactiveInterval(300);
 			String currentPage = "";
 			LoginUserData userData = li.getUserDetails(loginStatus, role);
 			session.setAttribute("userData", userData);
@@ -72,6 +62,12 @@ public class LoginController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
 		}
+	}
+	catch(Exception e) {
+		request.setAttribute("status", "Session timed out");
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		rd.forward(request, response);
+	}
 
 	}
 

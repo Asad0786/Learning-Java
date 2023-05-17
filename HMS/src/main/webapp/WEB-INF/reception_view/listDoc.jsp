@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
+<%@ include file="/WEB-INF/common_view/menu.jsp" %>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="com.hms.model.LoginUserData"%>
 <%@ include file="/WEB-INF/common_view/menu.jsp" %>

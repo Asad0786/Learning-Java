@@ -19,39 +19,65 @@ import com.hms.model.LoginServicesModel;
 @WebServlet("/deReg")
 public class DeReg extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeReg() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("userData") != null) {
-			Integer id = Integer.parseInt(  request.getParameter("id"));
-			boolean st = Boolean.parseBoolean(request.getParameter("st"));
-			LoginServicesModel lsm = new LoginImpl();
-			int changeSatus = lsm.changeSatus("doctor", id, st);
-			if(changeSatus>0) {
-				RequestDispatcher rd = request.getRequestDispatcher("deRegDoc");
+	public DeReg() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			HttpSession session = request.getSession(false);
+			session.setMaxInactiveInterval(300);
+			if (session.getAttribute("userData") != null) {
+				Integer id = Integer.parseInt(request.getParameter("id"));
+				boolean st = Boolean.parseBoolean(request.getParameter("st"));
+				LoginServicesModel lsm = new LoginImpl();
+				int changeSatus = lsm.changeSatus("doctor", id, st);
+				if (changeSatus > 0) {
+					RequestDispatcher rd = request.getRequestDispatcher("deRegDoc");
+					rd.forward(request, response);
+				}
+
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 				rd.forward(request, response);
 			}
-			
+		} catch (Exception e) {
+			request.setAttribute("status", "Session timed out, login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			HttpSession session = request.getSession(false);
+			session.setMaxInactiveInterval(300);
+			if (session.getAttribute("userData") != null) {
+				doGet(request, response);
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}
+		} catch (Exception e) {
+			request.setAttribute("status", "Session timed out, login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+		}
 
+	}
 }

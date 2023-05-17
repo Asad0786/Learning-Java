@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,10 +38,19 @@ public class createPatient extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("userData") != null) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/reception_view/create.jsp");
+		try {
+			HttpSession session = request.getSession(false);
+			session.setMaxInactiveInterval(300);
+			if (session.getAttribute("userData") != null) {
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/reception_view/create.jsp");
+				rd.forward(request, response);
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}
+		} catch (Exception e) {
+			request.setAttribute("status", "Session timed out, login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
 		}
 
@@ -54,28 +62,39 @@ public class createPatient extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("userData") != null) {
-			String name = (request.getParameter("patientFirstName") + " " + request.getParameter("patientSecondName")
-					+ " " + request.getParameter("patientLastName")).trim().replace("\\s", "");
-			String dob = request.getParameter("patientDOB");
-			String gender = request.getParameter("patientGender");
-			String email = request.getParameter("patientEmail");
-			String phone= request.getParameter("patientPhone");
-			PatientData pd = new PatientData();
-			pd.setName(name);
-			pd.setDob(dob);
-			pd.setEmail(email);
-			pd.setPassword(email);
-			pd.setGender(gender);
-			pd.setContact(phone);
-			PatientDAO pdo = new PatientImpl();
-			int inserRecord = pdo.inserRecord(pd);
-			if (inserRecord > 0) {
-				RequestDispatcher rd = request.getRequestDispatcher("addAppointment");
+		try {
+			HttpSession session = request.getSession(false);
+			session.setMaxInactiveInterval(300);
+			if (session.getAttribute("userData") != null) {
+				String name = (request.getParameter("patientFirstName") + " "
+						+ request.getParameter("patientSecondName") + " " + request.getParameter("patientLastName"))
+						.trim().replace("\\s", "");
+				String dob = request.getParameter("patientDOB");
+				String gender = request.getParameter("patientGender");
+				String email = request.getParameter("patientEmail");
+				String phone = request.getParameter("patientPhone");
+				PatientData pd = new PatientData();
+				pd.setName(name);
+				pd.setDob(dob);
+				pd.setEmail(email);
+				pd.setPassword(email);
+				pd.setGender(gender);
+				pd.setContact(phone);
+				PatientDAO pdo = new PatientImpl();
+				int inserRecord = pdo.inserRecord(pd);
+				if (inserRecord > 0) {
+					RequestDispatcher rd = request.getRequestDispatcher("addAppointment");
+					rd.forward(request, response);
+				}
+
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 				rd.forward(request, response);
 			}
-
+		} catch (Exception e) {
+			request.setAttribute("status", "Session timed out, login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
 		}
 	}
 

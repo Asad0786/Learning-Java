@@ -31,27 +31,24 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
 
 		try {
-			if (session != null) {
-				if ((Integer) session.getAttribute("userData") != null) {
-					session.removeAttribute("userData");
-					session.removeAttribute("currentPage");
-					System.out.println("Logout success");
-				} else {
-					System.out.println("please login first");
-				}
+			HttpSession session = request.getSession(false);
+			if (session.getAttribute("userData") != null) {
+				session.removeAttribute("userData");
+				session.removeAttribute("currentPage");
+				session.invalidate();
+				request.setAttribute("status", "Logout success");
+				RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+				rd.forward(request, response);
 			} else {
-				System.out.println("Dead session");
+				request.setAttribute("status", "Please login first");
+				RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+				rd.forward(request, response);
+				
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-
-			// String path = (String)request.getContextPath()+"/index.jsp";
-			// System.out.println(path);
-			// response.sendRedirect(path);
+			request.setAttribute("status", "login again");
 			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 		}
@@ -63,8 +60,19 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+			HttpSession session = request.getSession(false);
+			if (session.getAttribute("userData") != null) {
+				doGet(request, response);
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}
+		} catch (Exception e) {
+			request.setAttribute("status", "Session timed out, login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 }

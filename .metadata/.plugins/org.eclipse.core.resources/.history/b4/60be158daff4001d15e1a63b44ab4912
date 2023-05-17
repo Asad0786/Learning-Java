@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="com.hms.model.AppointmentData" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Appointment Details</title>
+</head>
+<body>
+<%
+int i =0;
+ArrayList<?> app = (ArrayList<?>)request.getAttribute("ares");
+
+%>
+<table>
+		<tr>
+		<td> Pat Name</td>
+		<td> Doc Name</td>
+		<td> App Date</td>
+		</tr>
+		<%while( i< app.size()){ %>
+		<tr>
+			<td><%(AppointmentData)app.get(i) %></td>
+			<td><% %></td>
+			<td><% %></td>
+		</tr>
+		<% i=i+1;} %>
+</table>
+
+</body>
+</html>

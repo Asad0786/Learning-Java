@@ -23,7 +23,7 @@ public class ArrayLists {
 		x.add(0, 200);
 		y.add(459);
 		x.addAll(y);
-		System.out.println(x);
+		System.out.println(x.get(1));
 		x.removeAll(y);
 		System.out.println(x);
 		System.out.println(y);

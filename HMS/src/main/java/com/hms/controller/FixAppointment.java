@@ -1,7 +1,6 @@
 package com.hms.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -47,50 +46,46 @@ public class FixAppointment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
+			HttpSession session = request.getSession(false);
+			session.setMaxInactiveInterval(300);
+			if (session.getAttribute("userData") != null) {
+				String pEmail = request.getParameter("patEmail");
+				String dEmail = request.getParameter("docEmail");
+				String aDate = request.getParameter("appDate");
+				String disease = request.getParameter("disease");
+				System.out.println(aDate);
+				LoginServicesModel lsm = new LoginImpl();
+				ResultSet rs = lsm.fetchRecordByEmail("patient", pEmail);
 
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("userData") != null) {
-			String pEmail = request.getParameter("patEmail");
-			String dEmail = request.getParameter("docEmail");
-			String aDate = request.getParameter("appDate");
-			String disease = request.getParameter("disease");
-			System.out.println(aDate);
-			LoginServicesModel lsm = new LoginImpl();
-			ResultSet rs = lsm.fetchRecordByEmail("patient", pEmail);
-//			try {
-//				if(rs.next())
-//					System.out.println(rs.getString(1));
-//				else
-//					System.out.println("null");
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+				ResultSet ds = lsm.fetchRecordByEmail("doctor", dEmail);
+				int pid = 0;
+				int did = 0;
+				try {
+					if (rs.next())
+						pid = Integer.parseInt(rs.getString(1));
+					if (ds.next())
+						did = Integer.parseInt(ds.getString(1));
 
-			ResultSet ds = lsm.fetchRecordByEmail("doctor", dEmail);
-			int pid = 0;
-			int did = 0;
-			try {
-				if (rs.next())
-					pid = Integer.parseInt(rs.getString(1));
-				if (ds.next())
-					did = Integer.parseInt(ds.getString(1));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				int sta = lsm.bookAppointment(pid, did, aDate, disease);
+				if (sta > 0) {
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/reception_view/home.jsp");
+					rd.forward(request, response);
+				} else
+					System.out.println("Some error");
+
 			}
 
-			System.out.println(pid + " " + did);
-			int sta = lsm.bookAppointment(pid, did, aDate, disease);
-			if (sta > 0) {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/reception_view/home.jsp");
-				rd.forward(request, response);
-			} else
-				System.out.println("Some error");
-
+		} catch (Exception e) {
+			request.setAttribute("status", "login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
 		}
 
 	}
-
 }

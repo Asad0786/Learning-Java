@@ -35,16 +35,27 @@ public class DeRegDoc extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("userData") != null) {
-			System.out.println(1);
-			LoginServicesModel lms = new LoginImpl();
-			ResultSet rs = lms.fetchRecord("doctor");
-			request.setAttribute("rs", rs);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/reception_view/listDoc.jsp");
-			rd.forward(request,response);
-			
+		try {
+			HttpSession session = request.getSession(false);
+			session.setMaxInactiveInterval(300);
 
+			if (session.getAttribute("userData") != null) {
+				LoginServicesModel lms = new LoginImpl();
+				ResultSet rs = lms.fetchRecord("doctor");
+				request.setAttribute("rs", rs);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/reception_view/listDoc.jsp");
+				rd.forward(request, response);
+
+			}
+			else {
+				request.setAttribute("status", "login again");
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}
+		} catch (Exception e) {
+			request.setAttribute("status", "Session timed out, login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
 		}
 
 	}
@@ -55,8 +66,20 @@ public class DeRegDoc extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+			HttpSession session = request.getSession(false);
+			session.setMaxInactiveInterval(300);
+			if (session.getAttribute("userData") != null) {
+				doGet(request, response);
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}
+		} catch (Exception e) {
+			request.setAttribute("status", "Session timed out, login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 }

@@ -35,22 +35,32 @@ public class AddAppointment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		session.setMaxInactiveInterval(300);
-		if (session.getAttribute("userData") != null) {
-			LoginServicesModel lms = new LoginImpl();
-			ResultSet rs = lms.fetchRecord("patient");
-			ResultSet ds = lms.fetchRecord("doctor");
+		try {
+			HttpSession session = request.getSession(false);
+			session.setMaxInactiveInterval(300);
+			if (session.getAttribute("userData") != null) {
+				LoginServicesModel lms = new LoginImpl();
+				ResultSet rs = lms.fetchRecord("patient");
+				ResultSet ds = lms.fetchRecord("doctor");
 
-			request.setAttribute("rs", rs);
-			request.setAttribute("ds", ds);
-			if (rs != null && ds != null) {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/reception_view/create_appointment.jsp");
-				rd.forward(request, response);
+				request.setAttribute("rs", rs);
+				request.setAttribute("ds", ds);
+				if (rs != null && ds != null) {
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/WEB-INF/reception_view/create_appointment.jsp");
+					rd.forward(request, response);
+				} else {
+					// create a general page laer to add list of docs and patients
+					System.out.println("No record found!!");
+				}
 			} else {
-				// create a general page laer to add list of docs and patients
-				System.out.println("No record found!!");
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
 			}
+		} catch (Exception e) {
+			request.setAttribute("status", "Session timed out, login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
 		}
 	}
 
@@ -60,9 +70,20 @@ public class AddAppointment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
 		HttpSession session = request.getSession(false);
+		session.setMaxInactiveInterval(300);
 		if (session.getAttribute("userData") != null)
 			doGet(request, response);
+		else {
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+		}
+		}catch(Exception e) {
+			request.setAttribute("status", "Session timed out, login again");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 }
